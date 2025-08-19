@@ -1,0 +1,2 @@
+Petite application utilisant SharpPcap pour écouter le réseau, en récupérant les IP et Hostname et testant ainsi les équivalences sur une fichier excel. Langage c# et vb.net
+Small application using SharpPcap to listen to the network, retrieving IP and Hostname and thus testing the equivalences on an excel file. C# and vb.net language
