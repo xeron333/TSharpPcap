@@ -166,14 +166,14 @@ namespace TestsSharpPcap
                         PacketQueue = new List<PacketDotNet.TcpPacket>();
                     }
 
-                    Console.WriteLine("BackgroundThread: ourQueue.Count is {0}", ourQueue.Count);
+                    //Console.WriteLine("BackgroundThread: ourQueue.Count is {0}", ourQueue.Count);
 
                     foreach (var packet in ourQueue)
                     {
                         srcIp = ipPacket.SourceAddress;
                         dstIp = ipPacket.DestinationAddress;
-                        Console.WriteLine("CE QUI M'INTERESSE TIME Local THREADDDDDDDDDDDDDDDDDD    BKR !!!!! : " + now);
-                        Console.WriteLine("CE QUI M'INTERESSE TIME PackCap BKR !!!!! : " + dateCap);
+                        Console.WriteLine("Date heure récupérée sur On_Arrival THREADDDDDDDDDDDDDDDDDD    BKR !!!!! : " + now);
+                        Console.WriteLine("Date heure du packet BKR !!!!! : " + dateCap);
                         Console.WriteLine("CE QUI M'INTERESSE IP SRC BKR !!!!! : " + srcIp);
                         Console.WriteLine("CE QUI M'INTERESSE IP DST BKR !!!!! : " + dstIp);
                         Console.WriteLine("CE QUI M'INTERESSE backgroundThread.IsAlive " + backgroundThread.IsAlive);
@@ -184,14 +184,13 @@ namespace TestsSharpPcap
                 }
             }
         }
-
-
         /// <summary>
         /// Prints the time and length of each received packet
         /// </summary>
         private static void device_OnPacketArrival(object sender, PacketCapture e)
         {
-            DateTime now = DateTime.Now;//+
+            Console.WriteLine("device_OnPacketArrivalLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
+            DateTime now = DateTime.Now;
             var time = e.Header.Timeval.Date;
             dateCap = time;
             var len = e.Data.Length;
@@ -209,15 +208,15 @@ namespace TestsSharpPcap
                 }
                 ch_srcIP = (string)srcIp.ToString();
                 ch_dstIP = (string)dstIp.ToString();
-                Console.WriteLine();
+                //Console.WriteLine();
                 if ((!backgroundThread.IsAlive) & (!(backgroundThread.ThreadState == System.Threading.ThreadState.Stopped)) & ((!(backgroundThread.ThreadState == System.Threading.ThreadState.Running))))
                 {
                     backgroundThread.Start();
                 }
-                else
-                {
-                    Console.WriteLine("Pack Null");
-                }
+             /*           else
+            {
+                Console.WriteLine("Pack Null");
+            }*/
             }
         }
     }
